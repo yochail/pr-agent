@@ -265,7 +265,7 @@ class PRReviewer:
                          keys_fix_yaml=["estimated_effort_to_review_[1-5]:", "security_concerns:", "possible_issues:",
                                         "relevant_file:", "relevant_line:", "suggestion:"])
         comments: List[str] = []
-        for suggestion in data.get('PR Feedback', {}).get('Code feedback', []):
+        for suggestion in data.get("code_feedback", []):
             relevant_file = suggestion.get('relevant_file', '').strip()
             relevant_line_in_file = suggestion.get('relevant_line', '').strip()
             content = suggestion.get('suggestion', '')
@@ -372,8 +372,8 @@ class PRReviewer:
                     if 1 <= estimated_effort_number <= 5: # 1, because ...
                         review_labels.append(f'Review effort [1-5]: {estimated_effort_number}')
                 if get_settings().pr_reviewer.enable_review_labels_security:
-                    security_concerns = data['review']['security_concerns'] # yes, because ...
-                    security_concerns_bool = 'yes' in security_concerns.lower() or 'true' in security_concerns.lower()
+                    security_concerns = str(data['review']['security_concerns']).lower() # yes, because ... can be a string or a boolean
+                    security_concerns_bool = 'yes' in security_concerns or 'true' in security_concerns
                     if security_concerns_bool:
                         review_labels.append('Possible security concern')
 

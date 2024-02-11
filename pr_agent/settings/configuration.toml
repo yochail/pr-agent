@@ -2,12 +2,12 @@
 model="gpt-4" # "gpt-4-0125-preview"
 model_turbo="gpt-4-0125-preview"
 fallback_models=["gpt-3.5-turbo-16k"]
-git_provider="github"
+git_provider="azure"
+use_repo_settings_file=false
 publish_output=true
 publish_output_progress=true
 verbosity_level=0 # 0,1,2
 use_extra_bad_extensions=false
-use_repo_settings_file=true
 use_global_settings_file=true
 ai_timeout=120 # 2minutes
 max_description_tokens = 500
@@ -27,8 +27,8 @@ require_estimate_effort_to_review=true
 require_soc2_ticket=false
 soc2_ticket_prompt="Does the PR description include a link to ticket in a project management system (e.g., Jira, Asana, Trello, etc.) ?"
 # general options
-num_code_suggestions=4
-inline_code_comments = false
+num_code_suggestions=5
+inline_code_comments = true
 ask_and_reflect=false
 #automatic_review=true
 remove_previous_review_comment=false
